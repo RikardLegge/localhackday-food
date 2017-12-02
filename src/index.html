@@ -1,14 +1,22 @@
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="apitoken.js"></script>
 
 <script>
-  // Initialize Firebase
-  // TODO: Replace with your project's customized code snippet
   var config = {
-    apiKey: "",
+    apiKey: apiToken,
     authDomain: "localhackday-food.firebaseapp.com",
     databaseURL: "https://localhackday-food.firebaseio.com/",
-    storageBucket: "<BUCKET>.appspot.com",
-    messagingSenderId: "<SENDER_ID>",
+    messagingSenderId: "237865884821",
   };
   firebase.initializeApp(config);
+//  var storage = firebase.storage();
+
+  var ref = firebase.database().ref();                           ref.on("value", function(snapshot){
+    output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+  });
+
+  firebase.database().ref('users/').set({
+    username: 'hej',
+    email: 'hej2'
+  });
 </script>
